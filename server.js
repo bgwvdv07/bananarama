@@ -1,7 +1,11 @@
-const express = require("express");
+import express from "express";
+import { createServer } from "http";
+
 const app = express();
-const http = require("http").Server(app);
-const io = require("socket.io")(http);
+const http = createServer(app);
+const socket = io({
+  path: "/api/socketio"
+});
 
 app.use(express.static(__dirname));
 
