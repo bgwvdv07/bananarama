@@ -1,13 +1,12 @@
 import express from "express";
 import { createServer } from "http";
+import { Server } from "socket.io";
 
 const app = express();
 const http = createServer(app);
-const socket = io({
-  path: "/api/socketio"
-});
+const io = new Server(http);
 
-app.use(express.static(__dirname));
+app.use(express.static("public")); // or use express.static(__dirname) if files are in root
 
 let players = {};
 
@@ -29,4 +28,5 @@ io.on("connection", socket => {
   });
 });
 
-http.listen(3000, () => console.log("Server running on :3000"));
+const PORT = process.env.PORT || 3000;
+http.listen(PORT, () => console.log(`Server running on :${PORT}`));
