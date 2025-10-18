@@ -9,7 +9,7 @@ const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const socket = io();
+const socket = io(window.location.origin);
 
 const endGif = new Image();
 endGif.src = "./public/8bit.gif"; // your premade GIF
